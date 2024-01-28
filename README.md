@@ -16,6 +16,6 @@
          - Title & Description
          - Movie Suggestions
              - Movie Lists * N
- - NetfliexGPT
+ - NetflixGPT
      - Search Bar
      - Movie Suggestions
