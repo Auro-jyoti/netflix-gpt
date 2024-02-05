@@ -115,7 +115,7 @@ const Login = () => {
           >
             Forgot Password ?{" "}
           </a>
-        ) : null}
+        ) : null} 
 
         <div className="mt-14">
           <input type="checkbox" id="rememberMe" class="h-4 w-4 mr-2" />
