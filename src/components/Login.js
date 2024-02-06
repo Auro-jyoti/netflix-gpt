@@ -4,6 +4,7 @@ import { checkValidData } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +14,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
 
+  const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
 
@@ -34,8 +36,16 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
+          updateProfile(user, {
+            displayName: name.current.value
+          })
+            .then(() => {
+              navigate("/browse");
+            })
+            .catch((error) => {
+              setErrorMessage(error.message);
+            });
           console.log(user);
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -43,7 +53,6 @@ const Login = () => {
           setErrorMessage(errorCode + "-" + errorMessage);
         });
     } else {
-      // Sign In
       signInWithEmailAndPassword(
         auth,
         email.current.value,
@@ -58,7 +67,7 @@ const Login = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMessage(errorCode+" - "+errorMessage);
+          setErrorMessage(errorCode + " - " + errorMessage);
         });
     }
   };
@@ -115,7 +124,7 @@ const Login = () => {
           >
             Forgot Password ?{" "}
           </a>
-        ) : null} 
+        ) : null}
 
         <div className="mt-14">
           <input type="checkbox" id="rememberMe" class="h-4 w-4 mr-2" />
