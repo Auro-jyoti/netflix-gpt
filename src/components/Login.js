@@ -37,7 +37,8 @@ const Login = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           updateProfile(user, {
-            displayName: name.current.value
+            displayName: name.current.value,
+            photoURL: "https://avatars.githubusercontent.com/u/123365412?v=4",
           })
             .then(() => {
               navigate("/browse");
