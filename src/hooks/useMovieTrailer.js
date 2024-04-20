@@ -11,8 +11,8 @@ const useMovieTrailer = (movieId) => {
       API_OPTIONS
     );
 
-    const json = await data.json();
-    // console.log(json);
+    const json = await data?.json();
+    console.log(json);
 
     const trailerObject = json?.results?.find((item) => item.type === "Trailer");
 

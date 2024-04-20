@@ -12,10 +12,11 @@ const useNowPlayingMovies = () => {
         API_OPTIONS
       );
 
-      const json = await data.json();
+      const json = await data?.json();
       // console.log(json.results);
+      console.log("response",json);
       
-      dispatch(addNowPlayingMovies(json.results));
+      dispatch(addNowPlayingMovies(json?.results));
     };
 
     useEffect(() => {
